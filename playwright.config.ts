@@ -4,6 +4,7 @@ export default defineConfig({
   testDir: './tests', // your test folder
   timeout: 30 * 1000,
   use: {
+    baseURL: 'https://parabank.parasoft.com',
     headless: false,            // headed mode
     viewport: null,             // full screen
     launchOptions: {
