@@ -3,7 +3,7 @@ import { PageProvider } from "../helpers/PageProvider";
 
 
 let pages: PageProvider;
-const userName = "ecarter_test5";
+const userName = "ecarter_test8";
 
 
 test.beforeEach(async ({ page }) => {
@@ -22,29 +22,28 @@ test('Register New User', async ({ page }) => {
      await page.waitForLoadState('networkidle');// wait for page load to complete
      await page.getByRole('link', { name: 'Register' }).click();  //click link
 
-     //fill user details
-     await page.locator('[id="customer.firstName"]').fill('Emily');
-     await page.locator('[id="customer.lastName"]').fill('Carter');
-     await page.locator('[id="customer.address.street"]').fill('742 Evergreen Terrace');
-     await page.locator('[id="customer.address.city"]').fill('Springfield');
-     await page.locator('[id="customer.address.state"]').fill('sdfdf');
-     await page.locator('[id="customer.address.state"]').fill('IL');
-     await page.locator('[id="customer.address.zipCode"]').fill('62704');
-     await page.locator('[id="customer.phoneNumber"]').fill('2175559382');
-     await page.locator('[id="customer.ssn"]').fill('123456789');
-     await page.locator('[id="customer.username"]').fill(userName);
-     await page.locator('[id="customer.password"]').fill('Test@1234');
-     await page.locator('#repeatedPassword').fill('Test@1234');
-     await page.getByRole('button', { name: 'Register' }).click();
+     //fill user details   
+
+     await pages.registerPage.firstName.fill('Emily');
+     await pages.registerPage.lastName.fill('Carter');
+     await pages.registerPage.street.fill('742 Evergreen Terrace');
+     await pages.registerPage.city.fill('Springfield');
+     await pages.registerPage.state.fill('IL');
+     await pages.registerPage.zipCode.fill('62704');
+     await pages.registerPage.phoneNumber.fill('2175559382');
+     await pages.registerPage.ssn.fill('123456789');
+     await pages.registerPage.userName.fill(userName);
+     await pages.registerPage.password.fill('Test@1234');
+     await pages.registerPage.repeatedPassword.fill('Test@1234');
+     await pages.registerPage.register.click();
+
 
      //wait for welcome user message to be visible
      await page.waitForSelector('h1', { state: 'visible', timeout: 1000 });
 
-     //assertion
-     const welcomeUser = page.locator("h1");
-     const accountCreateMsg = page.locator("//*[@id='rightPanel']/p");
-     await expect(welcomeUser).toHaveText("Welcome " + userName);
-     await expect(accountCreateMsg).toHaveText("Your account was created successfully. You are now logged in.");
+     //assertion     
+     await expect(pages.registerPage.welcomeUser).toHaveText("Welcome " + userName);
+     await expect(pages.registerPage.accountCreateMsg).toHaveText("Your account was created successfully. You are now logged in.");
 
 });
 
