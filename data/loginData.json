@@ -1,0 +1,13 @@
+{
+  "firstName": "Emily",
+  "lastName": "Carter",
+  "street": "742 Evergreen Terrace",
+  "city": "Springfield",
+  "state": "IL",
+  "zipCode": "62704",
+  "phoneNumber": "2175559382",
+  "ssn": "123456789",
+  "userName": "ecarter_test2",
+  "password": "Test@1234",
+  "repeatedPassword": "Test@1234"
+}
