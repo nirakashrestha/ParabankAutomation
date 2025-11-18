@@ -1,22 +1,22 @@
-import test, { expect, Locator } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { PageProvider } from "../helpers/PageProvider";
 import DataSet from "../data/loginData.json";
+import Titles from "../data/titles.json"
+import PageMessage from "../data/messages.json"
 
 
 let pages: PageProvider;
-const loginData: any = JSON.parse(JSON.stringify(DataSet));
-
+const loginData : any = JSON.parse(JSON.stringify(DataSet));
 
 test.beforeEach(async ({ page }) => {
      pages = new PageProvider(page);
-
 
      //visit parabankwebsite
      await page.goto("parabank/about.htm");
 });
 
 test('Verify Page Title', async ({ page }) => {
-     await expect(page).toHaveTitle("ParaBank | About Us");
+     await expect(page).toHaveTitle(Titles.aboutUs);
 });
 
 test('Register New User', async ({ page }) => {
@@ -45,7 +45,7 @@ test('Register New User', async ({ page }) => {
 
      //assertion     
      await expect(pages.registerPage.welcomeUser).toHaveText("Welcome " + loginData.userName);
-     await expect(pages.registerPage.accountCreateMsg).toHaveText("Your account was created successfully. You are now logged in.");
+     await expect(pages.registerPage.accountCreateMsg).toHaveText(PageMessage.accountCreateMessage);
 
 });
 
@@ -55,9 +55,8 @@ test('Login to Parabank', async ({ page }) => {
      await pages.loginPage.user.fill(loginData.userName);
      await pages.loginPage.password.fill(loginData.password);
      await pages.loginPage.login.click();
-
-     await expect(page).toHaveTitle("ParaBank | Accounts Overview");
-                 
+     //assertion - landed on accounts overview page
+     await expect(page).toHaveTitle(Titles.accountsOverview);                
 
 });
 
