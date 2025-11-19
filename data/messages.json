@@ -1,3 +1,4 @@
 {
-    "accountCreateMessage" : "Your account was created successfully. You are now logged in."
+    "accountCreateMessage" : "Your account was created successfully. You are now logged in.",
+    "accountCreateErrorMessage" : "The username and password could not be verified."
 }

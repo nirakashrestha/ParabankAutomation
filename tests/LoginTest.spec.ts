@@ -60,3 +60,12 @@ test('Login to Parabank', async ({ page }) => {
 
 });
 
+test("Invalid Login", async ()=>{  
+     
+     await pages.loginPage.user.fill(loginData.invalidUserName);
+     await pages.loginPage.password.fill(loginData.password);
+     await pages.loginPage.login.click();
+     await expect(pages.loginPage.error).toHaveText(PageMessage.accountCreateErrorMessage);
+
+});
+

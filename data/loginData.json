@@ -9,5 +9,7 @@
   "ssn": "123456789",
   "userName": "ecarter_test",
   "password": "Test@1234",
-  "repeatedPassword": "Test@1234"
+  "repeatedPassword": "Test@1234",
+  "invalidUserName" : "badUser"
 }
+
